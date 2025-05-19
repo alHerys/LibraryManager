@@ -19,12 +19,27 @@ public class Manager {
         daftarBuku.removeIf(buku -> buku.getID() == ID);
     }
 
-    // Method Mencari Buku lewat Judul dari buku
-    public void mencariBukuLewatID(int ID) {
-        for (Buku<?> buku : daftarBuku) {
-            if (buku.getID() == ID) {
-                System.out.println(buku);
+    // Method Mencari Buku lewat parameter judul, penulis, genre dan tahun terbit
+    // Belum 
+    public List<Buku> mencariBukuLewatJudul(String judul) {
+        List<Buku> daftarBukuCocok = new ArrayList<>();
+
+        for (Buku buku: daftarBuku){
+            // Nilai inisial true
+            boolean cocok = true;
+            // Cek Berdasarkan Judul, jika judul kosong lewatkan
+            if (judul != null){
+                if (!buku.getJudul().toLowerCase().contains(judul.trim().toLowerCase())) {
+                cocok = false;
+                }
+            }
+            
+            // Jika cocok maka tambahkan ke list
+            if (cocok) {
+                daftarBukuCocok.add(buku);
             }
         }
-    }
+        
+        return daftarBukuCocok;
+   }
 }
