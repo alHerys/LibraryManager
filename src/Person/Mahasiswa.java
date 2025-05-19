@@ -1,0 +1,43 @@
+package Person;
+
+public class Mahasiswa extends Person{
+
+    private String nim;
+    private String fakultas;
+    private String prodi;
+
+    public Mahasiswa(String nim, String fakultas, String prodi) {
+        this.nim = nim;
+        this.fakultas = fakultas;
+        this.prodi = prodi;
+    }
+
+    public String getNim() {
+        return nim;
+    }
+
+    public void setNim(String nim) {
+        this.nim = nim;
+    }
+
+    public String getFakultas() {
+        return fakultas;
+    }
+
+    public void setFakultas(String fakultas) {
+        this.fakultas = fakultas;
+    }
+
+    public String getProdi() {
+        return prodi;
+    }
+
+    public void setProdi(String prodi) {
+        this.prodi = prodi;
+    }
+
+    @Override
+    public String toString() {
+        return "";
+    }
+}
