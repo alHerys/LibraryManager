@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Buku<T> {
+    private int ID;
     private String judul;
     private List<String> penulis;
     private T genre;
@@ -18,6 +19,14 @@ public class Buku<T> {
                 """);
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }    
+
     public String getJudul() {
         return judul;
     }
@@ -29,6 +38,7 @@ public class Buku<T> {
     public List<String> getPenulis() {
         return penulis;
     }
+
 
     public void setPenulis(List<String> penulis) {
         this.penulis = penulis;
