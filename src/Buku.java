@@ -6,6 +6,7 @@ public class Buku<T> {
     private List<String> penulis;
     private T genre;
     private String tahunTerbit;
+    private boolean isBorrowed;
 
     public Buku() {
         this.penulis = new ArrayList<>();
@@ -44,6 +45,14 @@ public class Buku<T> {
 
     public String getTahunTerbit() {
         return tahunTerbit;
+    }
+
+    public boolean isBorrowed() {
+        return isBorrowed;
+    }
+
+    public void setBorrowed(boolean borrowed) {
+        isBorrowed = borrowed;
     }
 
     public void setTahunTerbit(String tahunTerbit) {
