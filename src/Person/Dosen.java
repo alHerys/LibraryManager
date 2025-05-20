@@ -29,5 +29,4 @@ public class Dosen extends Person {
     public String toString() {
         return "";
     }
-
 }

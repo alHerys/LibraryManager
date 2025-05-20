@@ -1,3 +1,5 @@
+import Person.Person;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ public class Buku<T> {
     private T genre;
     private String tahunTerbit;
     private boolean isBorrowed;
+    private Person peminjamBuku;
 
     public Buku() {
         this.penulis = new ArrayList<>();

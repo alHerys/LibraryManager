@@ -1,6 +1,9 @@
+import Person.Person;
+
 import java.util.*;
 
-import Person.*;;
+import Person.Dosen;
+import Person.Mahasiswa;
 
 public class Manager {
     private List<Buku<?>> daftarBuku;
@@ -20,20 +23,7 @@ public class Manager {
     }
 
     public boolean menghapusAnggota(String id) {
-        Person anggotaHapus = null;
-        for (Person anggota : daftarAnggota) {
-            if (anggota.getId().equals(id)) {
-                anggotaHapus = anggota;
-                break;
-            }
-        }
-
-        if (anggotaHapus == null) {
-            return false;
-        }
-
-        daftarAnggota.remove(anggotaHapus);
-        return true;
+        return daftarAnggota.removeIf(anggota -> anggota.getId().equals(id));
     }
 
     public Person mencariAnggota(String id) {
@@ -44,7 +34,6 @@ public class Manager {
                 break;
             }
         }
-
         return anggotaHapus;
     }
 
@@ -90,7 +79,7 @@ public class Manager {
                 break;
             }
             System.out.println("Buku dengan ID tersebut tidak ditemukan");
-     }
+        }
    }
 
    // Fungsi pengembalian buku menggunakan ID buku tersebut
@@ -100,13 +89,13 @@ public class Manager {
    public void mengembalikanBuku(int ID) {
         for (Buku<?> buku: pinjamanBuku) {
             // Jika ID yang diberikan cocok dengan buku yang ada maka hilangkan buku dari pinjamanBuku dan tambahkan ke daftarBuku
-                pinjamanBuku.remove(buku);
-                daftarBuku.add(buku);
-                System.out.println("Pengembalian Berhasil!");
-                break;
-            }
-            System.out.println("Buku dengan ID tersebut tidak ditemukan");
-     }
+            pinjamanBuku.remove(buku);
+            daftarBuku.add(buku);
+            System.out.println("Pengembalian Berhasil!");
+            break;
+        }
+        System.out.println("Buku dengan ID tersebut tidak ditemukan");
+   }
 
    // Fungsi menambahkan buku ke daftar buku yang hanya diberikan kepada Dosen
    /* NOTE: Di dalam implementasi, program kana mem pengguna akan diminta untuk memasukkan informasi mengenai buku
@@ -120,6 +109,7 @@ public class Manager {
         }
 
         daftarBuku.add(book);
+        daftarGenre.add(book.getGenre().toString());
         System.out.println("Buku sudah berhasil ditambahkan");
    }
 
