@@ -4,7 +4,8 @@ public class Dosen extends Person {
     private String nip;
     private String fakultas;
 
-    public Dosen(String nip, String fakultas) {
+    public Dosen(String nip, String fakultas,String nama, String kelamin, String alamat, String id, String password) {
+        super(nama, kelamin, alamat, id, password);
         this.nip = nip;
         this.fakultas = fakultas;
     }

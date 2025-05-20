@@ -8,6 +8,16 @@ public abstract class Person {
     private String alamat;
     private String role;
     private String id;
+    private String password;
+
+    public Person(String nama, String kelamin, String alamat, String id, String password) {
+        this.nama = nama;
+        this.kelamin = kelamin;
+        this.alamat = alamat;
+        this.id = id;
+        this.password = password;
+    }
+
 
     public String getId() {
         return id;
@@ -29,6 +39,10 @@ public abstract class Person {
         return role;
     }
 
+    public String getPassword() {
+        return password;
+    }
+    
     @Override
     public abstract String toString();
 }

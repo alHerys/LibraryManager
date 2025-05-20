@@ -6,7 +6,8 @@ public class Mahasiswa extends Person{
     private String fakultas;
     private String prodi;
 
-    public Mahasiswa(String nim, String fakultas, String prodi) {
+    public Mahasiswa(String nim, String fakultas, String prodi, String nama, String kelamin, String alamat, String id, String password) {
+        super(nama, kelamin, alamat, id, password);
         this.nim = nim;
         this.fakultas = fakultas;
         this.prodi = prodi;
