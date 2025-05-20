@@ -2,14 +2,12 @@ import Person.Person;
 
 import java.util.*;
 
-import Person.Dosen;
-import Person.Mahasiswa;
-
 public class Manager {
     private List<Buku<?>> daftarBuku;
     private Set<String> daftarGenre;
     private Queue<Buku<?>> pinjamanBuku;
     private Set<Person> daftarAnggota;
+    private Map<String, Integer> jumlahGenrePerBuku;
 
     public Manager() {
         this.pinjamanBuku = new LinkedList<>();
@@ -37,26 +35,16 @@ public class Manager {
         return anggotaHapus;
     }
 
-    // Method Mencari Buku lewat parameter judul.
-    // TO-DO: Implementasikan cara mencari lewat penulis, genre dan tahun terbit
-    /* NOTE: Di dalam implementasi pengguna akan diminta untuk memasukan semua informasi mengenai buku,
-        Judul, penulis, genre, dan tahun tersbit PENGGUNA DAPAT TIDAK MENGISI INFORMASI TERSEBUT, input dari
-        pengguna tersebut akan digunakan sebagai
-   */
     public List<Buku> mencariBukuLewatJudul(String judul) {
         List<Buku> daftarBukuCocok = new ArrayList<>();
 
         for (Buku<?> buku: daftarBuku){
-            // Nilai inisial true
             boolean cocok = true;
-            // Cek Berdasarkan Judul, jika judul kosong lewatkan
             if (judul != null){
-                // Jika salah maka tidak cocok
                 if (!buku.getJudul().toLowerCase().contains(judul.trim().toLowerCase())) {
                 cocok = false;
                 }
             }
-            // Jika cocok maka tambahkan ke list
             if (cocok) {
                 daftarBukuCocok.add(buku);
             }
@@ -65,15 +53,10 @@ public class Manager {
         return daftarBukuCocok;
    }
 
-   // Fungsi peminjaman buku menggunakan ID buku tersebut
-   /* NOTE: Di dalam implementasi pengguna akan diminta untuk memasukan ID dari buku tersebut
-      yang nantinya akan digunakan sebagai parameter untuk method ini.
-   */
    public void peminjamanBuku(int ID) {
         for (Buku<?> buku: daftarBuku) {
-            // Jika ID yang diberikan cocok dengan buku yang ada maka hilangkan buku dari daftarBuku dan tambahkan ke queue pinjamanBuku
             if (ID == buku.getID()) {
-                daftarBuku.remove(buku);
+                hapusBuku(ID);
                 pinjamanBuku.add(buku);
                 System.out.println("Peminjaman Berhasil!");
                 break;
@@ -82,13 +65,8 @@ public class Manager {
         }
    }
 
-   // Fungsi pengembalian buku menggunakan ID buku tersebut
-   /* NOTE: Di dalam implementasi pengguna akan diminta untuk memasukan ID dari buku tersebut
-      yang nantinya akan digunakan sebagai parameter untuk method ini.
-   */
    public void mengembalikanBuku(int ID) {
         for (Buku<?> buku: pinjamanBuku) {
-            // Jika ID yang diberikan cocok dengan buku yang ada maka hilangkan buku dari pinjamanBuku dan tambahkan ke daftarBuku
             pinjamanBuku.remove(buku);
             daftarBuku.add(buku);
             System.out.println("Pengembalian Berhasil!");
@@ -97,32 +75,157 @@ public class Manager {
         System.out.println("Buku dengan ID tersebut tidak ditemukan");
    }
 
-   // Fungsi menambahkan buku ke daftar buku yang hanya diberikan kepada Dosen
-   /* NOTE: Di dalam implementasi, program kana mem pengguna akan diminta untuk memasukkan informasi mengenai buku
-      lalu program akan menciptakan sebuah objek buku yang akan digunakan sebagai argumen
-      untuk digunakan dalam method ini
-   */
    public void mengirimBuku(Buku<?> book, Person pengguna) {
         if (pengguna.getClass().getName() != "Person.Dosen") {
             System.out.println("Mahasiswa tidak boleh mengirim Buku!");
             return;
         }
 
-        daftarBuku.add(book);
+        tambahBuku(book);
         daftarGenre.add(book.getGenre().toString());
         System.out.println("Buku sudah berhasil ditambahkan");
    }
 
-   // Hanya untuk menguji fungsi
-    public static void main(String[] args) {
-        Dosen dosen1 = new Dosen("1","1");
-        System.out.println(dosen1.getClass().getName());
-        Mahasiswa mahasiswa1 = new Mahasiswa(null, null, null);
-        System.out.println(mahasiswa1.getClass().getName());
-        Manager manager1 = new Manager();
+    public void tambahBuku(Buku<?> buku) {
+        this.daftarBuku.add(buku);
+        this.daftarGenre.add(buku.getGenre().toString());
 
-        Buku buku1 = new Buku<>();
-        manager1.mengirimBuku(buku1,dosen1);
-        manager1.mengirimBuku(buku1,mahasiswa1);
+        // Menambahkan kategori ke Map statistik dan jumlah produk dalam kategori tersebut (fitur tambahan)
+        jumlahGenrePerBuku.merge(buku.getGenre().toString(), 1, Integer::sum);
+
+//        System.out.print("\nProduk berhasil ditambahkan:\n" + buku);
     }
+
+    public void hapusBuku(int id) {
+        Buku<?> buku = null;
+        String genre = null;
+
+        // Mencari produk yang akan dihapus
+        for (Buku<?> bukuLoop : daftarBuku) {
+            if (bukuLoop.getID() == id) {
+                buku = bukuLoop;
+                genre = bukuLoop.getGenre().toString();
+//                System.out.println("Buku berhasil dihapus:\n" + bukuLoop);
+                break;
+            }
+        }
+
+        // Jika produk tidak ditemukan
+        if (buku == null) {
+//            System.out.println("Produk dengan ID: " + idProduk + " tidak ditemukan.");
+            return;
+        }
+
+        // Menghapus produk dari List dan Queue
+        daftarBuku.remove(buku);
+
+        // Mengurangi jumlah produk per kategori pada Map (fitur tambahan)
+        jumlahGenrePerBuku.merge(buku.getGenre().toString(), -1, Integer::sum);
+        // Menghapus kategori jika produknya sudah tidak ada lagi
+        if (jumlahGenrePerBuku.get(buku.getGenre().toString()) == 0) {
+            jumlahGenrePerBuku.remove(buku.getGenre().toString());
+        }
+
+        // Memeriksa apakah kategori masih digunakan oleh produk lain
+        boolean adaGenre = false;
+        for (Buku<?> bukuLoop : daftarBuku) {
+            if (bukuLoop.getGenre().toString().equalsIgnoreCase(genre)) {
+                adaGenre = true;
+                break;
+            }
+        }
+
+        // Jika kategori tidak digunakan lagi, hapus dari Set kategori
+        if (!adaGenre) {
+            daftarGenre.remove(genre);
+        }
+    }
+
+   public void menampilkanAnggota() {
+        if (daftarAnggota.isEmpty()) {
+            System.out.println("Tidak ada anggota perpustakaan");
+            return;
+        }
+
+        int count = 1;
+        System.out.println("Daftar anggota perpustakaan:");
+        for (Person anggota: daftarAnggota) {
+            System.out.println("Anggota " + count);
+            System.out.println(anggota);
+            count++;
+        }
+   }
+
+   public void menampilkanGenre() {
+        if (daftarGenre.isEmpty()) {
+            System.out.println("Genre kosong");
+            return;
+        }
+
+        int count = 1;
+        System.out.println("Daftar genre buku:");
+
+        for (String genre: daftarGenre) {
+            System.out.println(count + ". " + genre);
+            count++;
+        }
+   }
+
+   public void statistikGenre() {
+        if (jumlahGenrePerBuku.isEmpty()) {
+            System.out.println("Genre kosong");
+            return;
+        }
+
+       System.out.println();
+
+        int maks = 0;
+        for (String n : jumlahGenrePerBuku.keySet()) {
+            if (jumlahGenrePerBuku.get(n) >= maks) {
+                maks = jumlahGenrePerBuku.get(n);
+            }
+        }
+
+       System.out.println("STATISTIK JUMLAH GENRE PER PRODUK");
+
+       // Membuat diagram batang vertikal
+       for (int i = maks; i>= -1; i--) {
+           if (i > 0) {
+               // Menampilkan skala y-axis dan batang diagram
+               System.out.printf("%-3d %c%2c", i, '|', ' ');
+               for (String m : jumlahGenrePerBuku.keySet()) {
+                   if (i <= jumlahGenrePerBuku.get(m)) {
+                       for (int k = 0; k < m.length(); k++) {
+                           System.out.printf("%s", "█");
+                       }
+                       System.out.print("   ");
+                   } else {
+                       for (int k = 0; k < m.length(); k++) {
+                           System.out.printf("%s", " ");
+                       }
+                       System.out.print("   ");
+                   }
+               }
+           } else if (i == 0) {
+               // Menampilkan garis pemisah sumbu x dan y
+               ArrayList<Integer> categoryLength = new ArrayList<>();
+               for (String k : jumlahGenrePerBuku.keySet()) {
+                   categoryLength.add(k.length());
+               }
+               System.out.printf("%7c", ' ');
+               for (int j = 0; j < jumlahGenrePerBuku.size(); j++) {
+                   for (int k = 0; k < categoryLength.get(j) + 3; k++) {
+                       System.out.printf("%s", "─");
+                   }
+               }
+           } else {
+               // Menampilkan kategori pada sumbu x
+               System.out.printf("%7c", ' ');
+               for (String m : jumlahGenrePerBuku.keySet()) {
+                   System.out.printf("%s   ", m);
+               }
+           }
+           System.out.println();
+       }
+   }
 }

@@ -18,9 +18,30 @@ public class Buku<T> {
 
     @Override
     public String toString() {
+        if (penulis.size() > 1) {
+            StringBuilder daftarPenulis = new StringBuilder();
+            for (int i = 0; i < penulis.size(); i++) {
+                daftarPenulis.append(penulis.get(i));
+                if (i < penulis.size() - 1) {
+                    daftarPenulis.append(", ");
+                }
+            }
+            return String.format("""
+                Judul           : %s
+                ID              : %d
+                Genre           : %s
+                Tahun Terbit    : %s
+                Penulis         : %s
+                """, judul, ID, genre.toString(), tahunTerbit, daftarPenulis.toString());
+        }
+
         return String.format("""
-                
-                """);
+                Judul           : %s
+                ID              : %d
+                Genre           : %s
+                Tahun Terbit    : %s
+                Penulis         : %s
+                """, judul, ID, genre.toString(), tahunTerbit, penulis.getFirst());
     }
 
     public int getID() {
@@ -42,7 +63,6 @@ public class Buku<T> {
     public List<String> getPenulis() {
         return penulis;
     }
-
 
     public void setPenulis(List<String> penulis) {
         this.penulis = penulis;

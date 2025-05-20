@@ -27,6 +27,12 @@ public class Dosen extends Person {
 
     @Override
     public String toString() {
-        return "";
+        return String.format("""
+                Nama Dosen      : %s
+                NIP             : %s
+                Jenis Kelamin   : %s
+                Alamat          : %s
+                Fakultas        : %s
+                """, getNama(), nip, getKelamin(), getAlamat(), fakultas);
     }
 }

@@ -38,6 +38,13 @@ public class Mahasiswa extends Person{
 
     @Override
     public String toString() {
-        return "";
+        return String.format("""
+                Nama Mahasiswa  : %s
+                NIM             : %s
+                Jenis Kelamin   : %s
+                Alamat          : %s
+                Fakultas        : %s
+                Program Studi   : %s
+                """, getNama(), nim, getKelamin(), getAlamat(), fakultas, prodi);
     }
 }
