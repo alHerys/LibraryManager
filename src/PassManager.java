@@ -100,8 +100,4 @@ public class PassManager {
         scan.close();
         return available;
     }
-
-    public static void main(String[] args) {
-        register();
-    }
 }

@@ -10,7 +10,7 @@ public abstract class Person {
     private String id;
     private String password;
 
-    public Person(String nama, String kelamin, String alamat, String id, String password) {
+    public Person(String nama, String kelamin, String alamat, String id, String password, String Role) {
         this.nama = nama;
         this.kelamin = kelamin;
         this.alamat = alamat;
