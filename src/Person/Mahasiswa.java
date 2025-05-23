@@ -13,6 +13,11 @@ public class Mahasiswa extends Person{
         this.prodi = prodi;
     }
 
+    // TODO: GANTI INI, CEK class PERSON
+    public Mahasiswa(String id, String password, String role) {
+        super(id, password, role);
+    }
+
     public String getNim() {
         return nim;
     }

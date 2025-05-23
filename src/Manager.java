@@ -1,5 +1,9 @@
-import Person.Person; //
+import Person.*; //
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*; //
 
 public class Manager {
@@ -100,7 +104,7 @@ public class Manager {
    }
 
    public void mengirimBuku(Buku<?> book, Person pengguna) {
-        if (!"Dosen".equals(pengguna.getRole())) { // Updated role check
+        if (!"Dosen".equals(pengguna.getRole())) { 
             System.out.println("Hanya Dosen yang boleh mengirim (menambah) Buku!");
             return;
         }
@@ -172,7 +176,7 @@ public class Manager {
 
         int count = 1;
         System.out.println("\n--- Daftar Anggota Perpustakaan ---");
-        for (Person anggota: daftarAnggota) { //
+        for (Person anggota: daftarAnggota) { 
             System.out.println("\nAnggota " + count + ":");
             System.out.println(anggota.toString()); 
             count++;
@@ -273,5 +277,26 @@ public class Manager {
            }
            System.out.println(); 
        }
+   }
+
+   public void populateListPengguna() {
+        File file = new File("password.txt");
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(file))) {
+            String myData;
+            while ((myData = fileReader.readLine()) != null) {
+                String[] myDataArr = myData.split(" ", 3);
+                if (myDataArr[2].equals("Dosen")){
+                    Dosen objekDosen = new Dosen(myDataArr[0],myDataArr[1],myDataArr[2]);
+                    daftarAnggota.add(objekDosen);
+                }
+
+                else {
+                    Mahasiswa objekMahasiswa = new Mahasiswa(myDataArr[0],myDataArr[1],myDataArr[2]);
+                    daftarAnggota.add(objekMahasiswa);
+                }
+            } 
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
    }
 }

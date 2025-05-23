@@ -10,6 +10,11 @@ public class Dosen extends Person {
         this.fakultas = fakultas;
     }
 
+    // TODO: GANTI INI, CEK class PERSON
+    public Dosen(String id, String password, String role) {
+        super(id, password, role);
+    }
+
     public String getNip() {
         return nip;
     }
