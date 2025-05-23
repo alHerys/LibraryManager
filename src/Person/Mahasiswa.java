@@ -7,7 +7,7 @@ public class Mahasiswa extends Person{
     private String prodi;
 
     public Mahasiswa(String nim, String fakultas, String prodi, String nama, String kelamin, String alamat, String id, String password) {
-        super(nama, kelamin, alamat, id, password, "Mahasiswa"); // Pass "Mahasiswa" as role
+        super(nama, kelamin, alamat, id, password, "Mahasiswa");
         this.nim = nim;
         this.fakultas = fakultas;
         this.prodi = prodi;
@@ -46,6 +46,7 @@ public class Mahasiswa extends Person{
                 Alamat          : %s
                 Fakultas        : %s
                 Program Studi   : %s
-                """, getNama(), nim, getKelamin(), getAlamat(), fakultas, prodi);
+                Role            : %s
+                """, getNama(), nim, getKelamin(), getAlamat(), fakultas, prodi, getRole());
     }
 }

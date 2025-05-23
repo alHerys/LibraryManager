@@ -5,7 +5,7 @@ public class Dosen extends Person {
     private String fakultas;
 
     public Dosen(String nip, String fakultas,String nama, String kelamin, String alamat, String id, String password) {
-        super(nama, kelamin, alamat, id, password);
+        super(nama, kelamin, alamat, id, password, "Dosen"); 
         this.nip = nip;
         this.fakultas = fakultas;
     }
@@ -34,6 +34,7 @@ public class Dosen extends Person {
                 Jenis Kelamin   : %s
                 Alamat          : %s
                 Fakultas        : %s
-                """, getNama(), nip, getKelamin(), getAlamat(), fakultas);
+                Role            : %s
+                """, getNama(), nip, getKelamin(), getAlamat(), fakultas, getRole());
     }
 }

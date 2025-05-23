@@ -1,7 +1,5 @@
 package Person;
 
-import java.util.List;
-
 public abstract class Person {
     private String nama;
     private String kelamin;
@@ -10,14 +8,14 @@ public abstract class Person {
     private String id;
     private String password;
 
-    public Person(String nama, String kelamin, String alamat, String id, String password, String Role) {
+    public Person(String nama, String kelamin, String alamat, String id, String password, String role) {
         this.nama = nama;
         this.kelamin = kelamin;
         this.alamat = alamat;
         this.id = id;
         this.password = password;
+        this.role = role;
     }
-
 
     public String getId() {
         return id;
