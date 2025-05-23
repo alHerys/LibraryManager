@@ -8,6 +8,9 @@ public class Manager {
     private Queue<Buku<?>> pinjamanBuku;
     private Set<Person> daftarAnggota;
     private Map<String, Integer> jumlahGenrePerBuku;
+    private Map<String, String> listPassword;
+
+    Scanner scan = new Scanner(System.in);
 
     public Manager() {
         this.pinjamanBuku = new LinkedList<>();
