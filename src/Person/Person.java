@@ -9,6 +9,9 @@ public abstract class Person {
     private String role;
     private String id;
 
+    public Person() {
+    }
+
     public String getId() {
         return id;
     }
