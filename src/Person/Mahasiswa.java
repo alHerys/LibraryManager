@@ -6,10 +6,16 @@ public class Mahasiswa extends Person{
     private String fakultas;
     private String prodi;
 
-    public Mahasiswa(String nim, String fakultas, String prodi) {
+    public Mahasiswa(String nim, String fakultas, String prodi, String nama, String kelamin, String alamat, String id, String password) {
+        super(nama, kelamin, alamat, id, password, "Mahasiswa");
         this.nim = nim;
         this.fakultas = fakultas;
         this.prodi = prodi;
+    }
+
+    // TODO: GANTI INI, CEK class PERSON
+    public Mahasiswa(String id, String password, String role) {
+        super(id, password, role);
     }
 
     public String getNim() {
@@ -45,6 +51,7 @@ public class Mahasiswa extends Person{
                 Alamat          : %s
                 Fakultas        : %s
                 Program Studi   : %s
-                """, getNama(), nim, getKelamin(), getAlamat(), fakultas, prodi);
+                Role            : %s
+                """, getNama(), nim, getKelamin(), getAlamat(), fakultas, prodi, getRole());
     }
 }
