@@ -278,7 +278,6 @@ public class Manager {
            System.out.println(); 
        }
    }
-}
 
    public void populateListPengguna() {
         File file = new File("password.txt");

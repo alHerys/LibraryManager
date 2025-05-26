@@ -11,8 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-    }
-}
         tambahAwalBuku();
         libraryManager.populateListPengguna();
         while (true) {
@@ -48,7 +46,7 @@ public class Main {
                 userMenu();
             }
         }
-    }
+        }
 
     private static void mainMenu() {
         System.out.println("\n=============== SELAMAT DATANG DI PERPUSTAKAAN ===============");
@@ -318,6 +316,6 @@ public class Main {
         buku3.setTahunTerbit("2020");
         buku3.setBorrowed(false);
         libraryManager.tambahBuku(buku3);
-    }
+    
     } 
 }
