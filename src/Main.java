@@ -10,6 +10,9 @@ public class Main {
     private static Person user = null;
 
     public static void main(String[] args) {
+
+    }
+}
         tambahAwalBuku();
         libraryManager.populateListPengguna();
         while (true) {

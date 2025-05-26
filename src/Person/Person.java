@@ -25,6 +25,9 @@ public abstract class Person {
         this.role = role;
     }
 
+    public Person() {
+    }
+
     public String getId() {
         return id;
     }
