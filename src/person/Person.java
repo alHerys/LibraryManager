@@ -2,51 +2,30 @@ package person;
 
 public abstract class Person {
     private String nama;
-    private String kelamin;
+    private String jenisKelamin;
     private String alamat;
     private String role;
     private String id;
     private String password;
 
-    public Person(String nama, String kelamin, String alamat, String id, String password, String role) {
+    public Person(String nama, String jenisKelamin, String alamat, String id, String password, String role) {
         this.nama = nama;
-        this.kelamin = kelamin;
+        this.jenisKelamin = jenisKelamin;
         this.alamat = alamat;
         this.id = id;
         this.password = password;
         this.role = role;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public String getKelamin() {
-        return kelamin;
-    }
-
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public String getRole() {
-        return role;
-    }
 
     public String toBaseFileString() {
         return role + ";" +
                 id + ";" +
                 password + ";" +
                 nama + ";" +
-                kelamin + ";" +
+                jenisKelamin + ";" +
                 alamat;
     }
-
-    public abstract String toFileString();
 
     public static Person fromFileString(String line) {
         String[] parts = line.split(";", -1);
@@ -85,6 +64,28 @@ public abstract class Person {
         }
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getJenisKelamin() {
+        return jenisKelamin;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
     @Override
     public abstract String toString();
+
+    public abstract String toFileString();
 }

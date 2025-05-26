@@ -57,7 +57,7 @@ public class Buku<T> {
             List<String> penulis = new ArrayList<>();
             penulis.addAll(Arrays.asList(parts[5].split(",")));
 
-            return new Buku<String>(id, judul, genreStr, tahunTerbit, isBorrowed, penulis);
+            return new Buku<>(id, judul, genreStr, tahunTerbit, isBorrowed, penulis);
         } catch (NumberFormatException e) {
             System.err.println("Error parsing nomor ID buku: " + parts[0] + " pada baris: " + line);
             return null;

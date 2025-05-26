@@ -273,7 +273,7 @@ public class Manager {
         System.out.println("--- Akhir Daftar Buku Dipinjam ---");
     }
 
-    public void menampilkanGenre() {
+    private void menampilkanGenre() {
         if (daftarGenre.isEmpty()) {
             System.out.println("Genre kosong, belum ada buku yang ditambahkan atau dimuat.");
             return;
@@ -304,7 +304,7 @@ public class Manager {
         return daftarBukuCocok;
     }
 
-    public void statistikGenre() {
+    private void statistikGenre() {
         if (jumlahGenrePerBuku.isEmpty()) {
             System.out.println("Statistik genre tidak tersedia (tidak ada buku atau genre).");
             return;

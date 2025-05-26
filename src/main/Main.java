@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Main {
     private static Manager libraryManager;
-    private static final Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     private static Person user;
 
     public static void main(String[] args) {

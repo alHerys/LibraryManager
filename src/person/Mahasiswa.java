@@ -35,6 +35,6 @@ public class Mahasiswa extends Person {
                 Fakultas        : %s
                 Program Studi   : %s
                 Role            : %s
-                """, getNama(), nim, getId(), getKelamin(), getAlamat(), fakultas, prodi, getRole());
+                """, getNama(), nim, getId(), getJenisKelamin(), getAlamat(), fakultas, prodi, getRole());
     }
 }

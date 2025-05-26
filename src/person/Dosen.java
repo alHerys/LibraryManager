@@ -31,6 +31,6 @@ public class Dosen extends Person {
                 Alamat          : %s
                 Fakultas        : %s
                 Role            : %s
-                """, getNama(), nip, getId(), getKelamin(), getAlamat(), fakultas, getRole());
+                """, getNama(), nip, getId(), getJenisKelamin(), getAlamat(), fakultas, getRole());
     }
 }
