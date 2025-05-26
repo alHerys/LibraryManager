@@ -1,0 +1,2 @@
+Dosen;Kiel;12345;Ezekiel Aaron Marmora;Laki-laki;Sukun;123523162314;Ilmu Komputer
+Mahasiswa;Hery;09072511;Alvianto Hery Sarborn;Laki-laki;Sigura-Gura;245150700111022;Ilmu Komputer;Teknologi Informasi

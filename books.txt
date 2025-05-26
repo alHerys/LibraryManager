@@ -1,0 +1,2 @@
+159;Cara santet;Ghoib;1000;false;Ezekiel,Hery,Naya
+199;Matematika Dasar;Mipa;2020;false;Ezekiel,Hery
