@@ -112,11 +112,9 @@ public class Main {
     private static void handleLogin() {
         System.out.println("\n--- Login Pengguna ---");
         String[] loginDetails = PassManager.login(scanner);
-        System.out.println(Arrays.toString(loginDetails)); // DEBUG
 
         if (loginDetails != null) {
             String loggedInId = loginDetails[0];
-            System.out.println(loggedInId); // DEBUG
             user = libraryManager.mencariAnggota(loggedInId);
             if (user == null) {
                 System.out.println("Autentikasi berhasil, tetapi detail pengguna tidak ditemukan dalam sistem list manager.");

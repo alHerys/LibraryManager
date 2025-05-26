@@ -18,7 +18,7 @@ public abstract class Person {
     }
 
     // Constructor untuk default user
-    // TO-DO: GANTI ini, buat supaya semua informasi bisa disetor di file txt
+    // TO-DO: GANTI ini, buat supaya semua informasi bisa disetor di file txt, bukan hanya password, id dan role
     public Person(String id, String password, String role) {
         this.id = id;
         this.password = password;
