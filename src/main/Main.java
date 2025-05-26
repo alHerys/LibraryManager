@@ -1,20 +1,40 @@
-import Person.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+package main;
+
+import bookManager.*;
+import person.*;
+import java.io.File;
+import java.util.*;
 
 public class Main {
-    private static Manager libraryManager = new Manager();
-    private static Scanner scanner = new Scanner(System.in);
-    private static Person user = null;
+    private static Manager libraryManager;
+    private static final Scanner scanner = new Scanner(System.in);
+    private static Person user;
 
     public static void main(String[] args) {
-        tambahAwalBuku();
-        libraryManager.populateListPengguna();
+        libraryManager = new Manager();
+
+        File booksFile = new File("books.txt");
+        File usersFile = new File("users.txt");
+
+        if (!usersFile.exists()){
+            try {
+                usersFile.createNewFile();
+            } catch (Exception e) {
+                System.err.println("Gagal membuat file users.txt awal: " + e.getMessage());
+            }
+        }
+
+        if (!booksFile.exists()) {
+            try {
+                booksFile.createNewFile();
+            } catch (Exception e) {
+                System.err.println("Gagal membuat file books.txt awal: " + e.getMessage());
+            }
+        }
+
         while (true) {
             mainMenu();
-            int choice = -1;
+            int choice;
             try {
                 String input = scanner.nextLine();
                 if (input.trim().isEmpty()) {
@@ -68,58 +88,77 @@ public class Main {
         }
 
         System.out.print("Nama Lengkap: ");
-        String nama = scanner.nextLine();
+        String nama = scanner.nextLine().trim();
         System.out.print("Jenis Kelamin (Laki-laki/Perempuan): ");
-        String kelamin = scanner.nextLine();
+        String kelamin = scanner.nextLine().trim();
         System.out.print("Alamat: ");
-        String alamat = scanner.nextLine();
-        System.out.print("ID Pengguna (username): ");
-        String id = scanner.nextLine();
+        String alamat = scanner.nextLine().trim();
+        System.out.print("Username: ");
+        String id = scanner.nextLine().trim();
         System.out.print("Password: ");
-        String password = scanner.nextLine();
+        String password = scanner.nextLine().trim();
 
-        Person newUser = null;
-        String role = "";
+        if (nama.isEmpty() || kelamin.isEmpty() || alamat.isEmpty() || id.isEmpty() || password.isEmpty()) {
+            System.out.println("Semua field wajib diisi.");
+            return;
+        }
+        if (id.contains(";") || password.contains(";") || nama.contains(";") || kelamin.contains(";") || alamat.contains(";")) {
+            System.out.println("Data tidak boleh mengandung karakter ';'.");
+            return;
+        }
+
+        Person newUser;
 
         if (pilihanInt == 1) {
-            role = "Dosen";
             System.out.print("NIP: ");
-            String nip = scanner.nextLine();
+            String nip = scanner.nextLine().trim();
             System.out.print("Fakultas: ");
-            String fakultas = scanner.nextLine();
-            newUser = new Dosen(nip, fakultas, nama, kelamin, alamat, id, password);
+            String fakultas = scanner.nextLine().trim();
+            if (nip.isEmpty() || fakultas.isEmpty() || nip.contains(";") || fakultas.contains(";")) {
+                System.out.println("NIP dan Fakultas wajib diisi dan tidak boleh mengandung ';'.");
+                return;
+            }
+
+//            Polimorfisme Person yakni menjadi Dosen
+            newUser = new Dosen(nama, kelamin, alamat, id, password, nip, fakultas);
+
         } else if (pilihanInt == 2) {
-            role = "Mahasiswa";
             System.out.print("NIM: ");
-            String nim = scanner.nextLine();
+            String nim = scanner.nextLine().trim();
             System.out.print("Fakultas: ");
-            String fakultas = scanner.nextLine();
+            String fakultas = scanner.nextLine().trim();
             System.out.print("Program Studi: ");
-            String prodi = scanner.nextLine();
-            newUser = new Mahasiswa(nim, fakultas, prodi, nama, kelamin, alamat, id, password);
+            String prodi = scanner.nextLine().trim();
+            if (nim.isEmpty() || fakultas.isEmpty() || prodi.isEmpty() ||
+                    nim.contains(";") || fakultas.contains(";") || prodi.contains(";")) {
+                System.out.println("NIM, Fakultas, dan Prodi wajib diisi dan tidak boleh mengandung ';'.");
+                return;
+            }
+
+//            Polimorfisme Person yakni menjadi Mahasiswa
+            newUser = new Mahasiswa(nama, kelamin, alamat, id, password, nim, fakultas, prodi);
+
         } else {
             System.out.println("Pilihan peran tidak valid.");
             return;
         }
 
-        if (PassManager.register(id, password, role)) {
-            libraryManager.mendaftarAnggota(newUser);
-        } else {
-            System.out.println("Gagal mendaftarkan pengguna ke sistem. Username mungkin sudah ada atau ada kesalahan lain.");
+        if (libraryManager.mendaftarAnggota(newUser)) {
+            System.out.println("Silahkan login!");
         }
     }
 
     private static void handleLogin() {
         System.out.println("\n--- Login Pengguna ---");
-        String[] loginDetails = PassManager.login(scanner);
-        System.out.println(Arrays.toString(loginDetails)); // DEBUG
+        String[] loginDetails = Authentikasi.login(scanner);
 
         if (loginDetails != null) {
             String loggedInId = loginDetails[0];
-            System.out.println(loggedInId); // DEBUG
             user = libraryManager.mencariAnggota(loggedInId);
+
             if (user == null) {
-                System.out.println("Autentikasi berhasil, tetapi detail pengguna tidak ditemukan dalam sistem list manager.");
+                System.out.println("Autentikasi berhasil, tetapi detail pengguna tidak ditemukan dalam sistem list manager. Silakan hubungi admin.");
+                user = null;
             }
         } else {
             user = null;
@@ -133,19 +172,16 @@ public class Main {
         System.out.println("3. Pinjam Buku");
         System.out.println("4. Kembalikan Buku");
         System.out.println("5. Tampilkan Buku yang Dipinjam");
+        System.out.println("6. Informasi Genre (Daftar & Statistik)");
 
         if (user.getRole().equals("Dosen")) {
             System.out.println("--- Menu Dosen ---");
-            System.out.println("6. Tambah Buku Baru");
-            System.out.println("7. Hapus Buku (berdasarkan ID)");
-            System.out.println("8. Tampilkan Semua Anggota");
-            System.out.println("9. Tampilkan Daftar Genre");
-            System.out.println("10. Tampilkan Statistik Genre");
+            System.out.println("7. Tambah Buku Baru");
         }
         System.out.println("0. Logout");
         System.out.print("Masukkan pilihan Anda: ");
 
-        int choice = -1;
+        int choice;
         try {
             String input = scanner.nextLine();
             if (input.trim().isEmpty()) {
@@ -174,6 +210,9 @@ public class Main {
             case 5:
                 libraryManager.menampilkanBukuDipinjam();
                 break;
+            case 6:
+                libraryManager.tampilkanInformasiGenre();
+                break;
             case 0:
                 user = null;
                 System.out.println("Anda telah logout.");
@@ -188,27 +227,13 @@ public class Main {
     }
 
     private static void handleDosenMenu(int choice) {
-        switch (choice) {
-            case 6:
-                handleTambahBuku();
-                break;
-            case 7:
-                handleHapusBuku();
-                break;
-            case 8:
-                libraryManager.menampilkanAnggota();
-                break;
-            case 9:
-                libraryManager.menampilkanGenre();
-                break;
-            case 10:
-                libraryManager.statistikGenre();
-                break;
-            default:
-                System.out.println("Pilihan tidak valid");
+        if (choice == 7) {
+            handleTambahBuku();
+        } else {
+            System.out.println("Pilihan tidak valid untuk Dosen.");
         }
     }
-    
+
     private static void handleCariBuku() {
         System.out.print("Masukkan judul buku yang dicari (atau bagian dari judul): ");
         String queryJudul = scanner.nextLine();
@@ -220,7 +245,11 @@ public class Main {
             for (Buku<?> bukuLoop : bukuKetemu) {
                 System.out.println("--------------------");
                 System.out.println(bukuLoop.toString());
-                 System.out.println("Status: " + (bukuLoop.isBorrowed() ? "Dipinjam" : "Tersedia"));
+                System.out.println("Status: " + (bukuLoop.getStatusPeminjaman() ? "Dipinjam" : "Tersedia"));
+                if (bukuLoop.getStatusPeminjaman() && bukuLoop.getPeminjamBuku() != null) {
+                    Person peminjam = bukuLoop.getPeminjamBuku();
+                    System.out.println("  Dipinjam Oleh: " + peminjam.getNama() + " (" + peminjam.getRole() + ")");
+                }
             }
             System.out.println("--- Akhir Hasil Pencarian ---");
         }
@@ -238,7 +267,7 @@ public class Main {
 
     private static void handleKembalikanBuku() {
         System.out.print("Masukkan ID Buku yang ingin dikembalikan: ");
-         try {
+        try {
             int bukuID = Integer.parseInt(scanner.nextLine());
             libraryManager.mengembalikanBuku(bukuID);
         } catch (NumberFormatException e) {
@@ -248,72 +277,43 @@ public class Main {
 
     private static void handleTambahBuku() {
         System.out.println("\n--- Tambah Buku Baru ---");
-        Buku<String> bukuBaru = new Buku<>();
         try {
             System.out.print("ID Buku (angka unik): ");
-            bukuBaru.setID(Integer.parseInt(scanner.nextLine()));
+            int idBuku = Integer.parseInt(scanner.nextLine());
             System.out.print("Judul Buku: ");
-            bukuBaru.setJudul(scanner.nextLine());
+            String judulBuku = scanner.nextLine().trim();
             System.out.print("Genre: ");
-            bukuBaru.setGenre(scanner.nextLine());
+            String genreBuku = scanner.nextLine().trim();
             System.out.print("Tahun Terbit: ");
-            bukuBaru.setTahunTerbit(scanner.nextLine());
-            
+            String tahunTerbitBuku = scanner.nextLine().trim();
+
+            if (judulBuku.isEmpty() || genreBuku.isEmpty() || tahunTerbitBuku.isEmpty() ||
+                    judulBuku.contains(";") || genreBuku.contains(";") || tahunTerbitBuku.contains(";") ||
+                    judulBuku.contains(",") || genreBuku.contains(",")) {
+                System.out.println("Judul, Genre, Tahun terbit wajib diisi dan tidak boleh mengandung ';' atau ','.");
+                return;
+            }
+
             List<String> penulisList = new ArrayList<>();
             System.out.print("Jumlah Penulis: ");
             int jmlPenulis = Integer.parseInt(scanner.nextLine());
             for(int i=0; i < jmlPenulis; i++) {
                 System.out.print("Nama Penulis " + (i+1) + ": ");
-                penulisList.add(scanner.nextLine());
+                String namaPenulis = scanner.nextLine().trim();
+                if (namaPenulis.isEmpty() || namaPenulis.contains(";") || namaPenulis.contains(",")) {
+                    System.out.println("Nama penulis tidak boleh kosong atau mengandung ';' atau ','. Penambahan buku dibatalkan.");
+                    return;
+                }
+                penulisList.add(namaPenulis);
             }
-            bukuBaru.setPenulis(penulisList);
-            bukuBaru.setBorrowed(false);
 
+            Buku<String> bukuBaru = new Buku<>(idBuku, judulBuku, genreBuku, tahunTerbitBuku, false, penulisList);
             libraryManager.mengirimBuku(bukuBaru, user);
 
         } catch (NumberFormatException e) {
             System.out.println("Input tidak valid untuk ID atau Jumlah Penulis. Harus berupa angka.");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println("Terjadi kesalahan saat menambah buku: " + e.getMessage());
         }
-    }
-    
-    private static void handleHapusBuku() {
-        System.out.print("Masukkan ID Buku yang akan dihapus: ");
-        try {
-            int bukuID = Integer.parseInt(scanner.nextLine());
-            libraryManager.hapusBukuByID(bukuID, user);
-        } catch (NumberFormatException e) {
-            System.out.println("ID Buku tidak valid. Harus berupa angka.");
-        }
-    }
-
-    private static void tambahAwalBuku() {
-        Buku<String> buku1 = new Buku<>();
-        buku1.setID(101);
-        buku1.setJudul("Pemrograman Java Dasar");
-        buku1.setPenulis(List.of("Budi Doremi"));
-        buku1.setGenre("Edukasi");
-        buku1.setTahunTerbit("2023");
-        buku1.setBorrowed(false);
-        libraryManager.tambahBuku(buku1);
-
-        Buku<String> buku2 = new Buku<>();
-        buku2.setID(102);
-        buku2.setJudul("Algoritma dan Struktur Data");
-        buku2.setPenulis(List.of("Candra Agus", "Dewi Lestari"));
-        buku2.setGenre("Komputer");
-        buku2.setTahunTerbit("2022");
-        buku2.setBorrowed(false);
-        libraryManager.tambahBuku(buku2);
-        
-        Buku<String> buku3 = new Buku<>();
-        buku3.setID(103);
-        buku3.setJudul("Fisika Kuantum Lanjutan");
-        buku3.setPenulis(List.of("Prof. Einstein"));
-        buku3.setGenre("Sains");
-        buku3.setTahunTerbit("2020");
-        buku3.setBorrowed(false);
-        libraryManager.tambahBuku(buku3);
     }
 }
