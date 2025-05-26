@@ -97,7 +97,7 @@ public class Manager {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.trim().isEmpty()) continue;
-                Buku<String> buku = Buku.fromFileString(line);
+                Buku<String> buku = Buku.mengambilDariFile(line);
                 if (buku != null) {
                     if (buku.getStatusPeminjaman()) {
                         pinjamanBuku.add(buku);
@@ -115,11 +115,11 @@ public class Manager {
     public void saveBooksToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_FILE, false))) {
             for (Buku<?> buku : daftarBuku) {
-                writer.write(buku.toFileString());
+                writer.write(buku.formatUntukKeFile());
                 writer.newLine();
             }
             for (Buku<?> buku : pinjamanBuku) {
-                writer.write(buku.toFileString());
+                writer.write(buku.formatUntukKeFile());
                 writer.newLine();
             }
         } catch (IOException e) {

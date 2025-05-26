@@ -36,7 +36,7 @@ public class Buku<T> {
                 """, judul, ID, genre != null ? genre.toString() : "N/A", tahunTerbit, daftarPenulisStr);
     }
 
-    public String toFileString() {
+    public String formatUntukKeFile() {
         String penulisStr = String.join(",", penulis);
         return ID + ";" +
                 judul + ";" +
@@ -46,7 +46,7 @@ public class Buku<T> {
                 penulisStr;
     }
 
-    public static Buku<String> fromFileString(String line) {
+    public static Buku<String> mengambilDariFile(String line) {
         String[] parts = line.split(";", -1);
         try {
             int id = Integer.parseInt(parts[0]);
