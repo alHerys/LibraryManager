@@ -1,10 +1,10 @@
-import Person.*; 
+import Person.*; //
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*; 
+import java.util.*; //
 
 public class Manager {
     private List<Buku<?>> daftarBuku;
@@ -27,7 +27,7 @@ public class Manager {
     }
 
     public boolean menghapusAnggota(String id) {
-        boolean removed = daftarAnggota.removeIf(anggota -> anggota.getId().equals(id)); 
+        boolean removed = daftarAnggota.removeIf(anggota -> anggota.getId().equals(id)); //
         if (removed) {
             System.out.println("Anggota dengan ID " + id + " berhasil dihapus.");
         } else {
@@ -193,7 +193,7 @@ public class Manager {
         for (Buku<?> buku : daftarBuku) {
             System.out.println("--------------------");
             System.out.println(buku.toString());
-            System.out.println("Status: " + (buku.isBorrowed() ? "Dipinjam" : "Tersedia")); 
+            System.out.println("Status: " + (buku.isBorrowed() ? "Dipinjam" : "Tersedia")); //
         }
         System.out.println("--- Akhir Daftar Buku ---");
    }
@@ -258,7 +258,7 @@ public class Manager {
                        System.out.print("   "); 
                    }
                }
-           } else if (i == 0) { 
+           } else if (i == 0) { //
                ArrayList<Integer> categoryLength = new ArrayList<>(); 
                for (String k : jumlahGenrePerBuku.keySet()) { 
                    categoryLength.add(k.length()); 

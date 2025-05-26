@@ -29,7 +29,7 @@ public class PassManager {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File Password Tidak ditemukan");
+            System.out.println("File Password Tidak ditemukan, akan membuat file baru.");
             // Tidak perlu return false di sini, karena file akan dibuat saat penulisan
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -46,7 +46,7 @@ public class PassManager {
             System.out.println("Registrasi sukses untuk username: '" + username + "'. Silahkan login!");
             return true;
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Terjadi kesalahan saat menulis ke file: " + e.getMessage());
             return false;
         }
     }
@@ -66,13 +66,12 @@ public class PassManager {
         try (BufferedReader fileReader = new BufferedReader(new FileReader(file))) {
             String myData;
             while ((myData = fileReader.readLine()) != null) {
-                if (myData.trim().isEmpty()) { // Lewati baris kosong kalau ada, seharusnya tidak ada
+                if (myData.trim().isEmpty()) { // Lewati baris kosong
                     continue;
                 }
                 String[] myDataArr = myData.split(" ", 3);
 
-                // definisikan informasi
-                // TO-DO: Buat method ini menyetor lebih dari hanya tiga informasi itu, semuanya lebih baik
+                // Pengecekan penting untuk memastikan format baris benar
                 if (myDataArr.length == 3) {
                     String storedUser = myDataArr[0];
                     String storedPass = myDataArr[1];
@@ -81,6 +80,7 @@ public class PassManager {
                     if (username.equals(storedUser)) {
                         if (password.equals(storedPass)) {
                             System.out.println("Authentication Success. Welcome " + storedUser + " (" + storedRole + ")!");
+                            System.out.println(storedRole); // DEBUG
                             return new String[]{storedUser, storedRole}; // Return username and role
                         } else {
                             System.out.println("Password anda salah, tolong ulangi.");
@@ -92,9 +92,9 @@ public class PassManager {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File Password Tidak ditemukkan");
+            System.out.println("File Password Tidak ditemukkan. Silakan daftar terlebih dahulu.");
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Terjadi kesalahan saat membaca file: " + e.getMessage());
         }
         System.out.println("Login gagal, pengguna tidak ditemukkan atau password salah.");
         return null;
