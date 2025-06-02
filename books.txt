@@ -42,3 +42,4 @@
 135;Investasi Saham Cerdas;SosBis;2024;false;Prof. Eko Prasetyo,Warren Buffett
 210;Pengantar Sosiologi Masyarakat;SosBis;2022;false;George Ritzer,Prof. Umar Bakri
 1123456789;Rekayasa Computer Vision;CompVis;2020;false;Dr. Hery
+987;Algoritma Quantum;Quantum;2023;false;Prof. Daniel

@@ -202,6 +202,10 @@ public class Main {
         }
 
         System.out.println("\n  Sedang memproses pendaftaran...");
+
+        if (libraryManager.mendaftarAnggota(newUser)) {
+            System.out.println("Silahkan login!");
+        }
     }
 
     /**

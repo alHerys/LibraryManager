@@ -189,17 +189,19 @@ public class Manager {
      * @return {@code true} jika pendaftaran berhasil, {@code false} jika gagal (misal, ID sudah ada).
      */
     public boolean mendaftarAnggota(Person anggota) {
+
+        // Cek di file (users.txt)
+        if (checkIdUsers(anggota.getId())) {
+            System.out.println("Username '" + anggota.getId() + "' sudah diambil (ada di file). Gagal mendaftarkan.");
+            return false;
+        }
+
         // Cek di memori (daftarAnggota) dulu
         for (Person p : daftarAnggota) {
             if (p.getId().equals(anggota.getId())) {
                 System.out.println("Username '" + anggota.getId() + "' sudah ada di memori. Gagal mendaftarkan.");
                 return false;
             }
-        }
-        // Cek di file (users.txt)
-        if (checkIdUsers(anggota.getId())) {
-            System.out.println("Username '" + anggota.getId() + "' sudah diambil (ada di file). Gagal mendaftarkan.");
-            return false;
         }
 
         daftarAnggota.add(anggota);

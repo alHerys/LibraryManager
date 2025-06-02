@@ -14,3 +14,6 @@ Mahasiswa;chandra.w;chandraOke;Chandra Wijaya;Laki-laki;Jl. Merpati 7, Pontianak
 Dosen;prof.umar;umarHebat;Prof. Umar Bakri;Laki-laki;Jl. Sejarah 1, Padang;196512301990111007;Sejarah
 Mahasiswa;nina.karlina;ninaManis;Nina Karlina;Perempuan;Jl. Elang 4, Palembang;30304040;Kedokteran;Pendidikan Dokter
 Dosen;Hery;09072511;Alvianto Hery Sarborn;Laki-laki;Sigura-gura;245150700111022;Ilmu Komputer
+Dosen;andii;09072511;Andi Naila;Perempuan;Makassar;2814156712;Ilmu Komputer
+Mahasiswa;majuu;09072511;Majuu Real;Laki-laki;Sarira;245150700111022;Ilmu Komputer;Teknik Komputer
+Dosen;Daniel;09072511;Daniel Smite Manalu;Laki-laki;Medan;2168412574128;Ilmu Komputer
