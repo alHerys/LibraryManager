@@ -1,2 +1,44 @@
-159;Cara santet;Ghoib;1000;false;Ezekiel,Hery,Naya
-199;Matematika Dasar;Mipa;2020;false;Ezekiel,Hery
+101;Java Dasar;Prog;2021;false;Prof. Budi Santoso,Dr. Dewi Lestari
+104;Python Lanjut;Prog;2022;false;Prof. Eko Prasetyo
+105;Web Dinamis;Prog;2024;false;Dr. Dewi Lestari
+110;Algoritma Top;Prog;2023;false;Thomas H. Cormen
+111;Java Enterprise;Prog;2023;false;Prof. Budi Santoso
+119;Pemrograman C++;Prog;2020;false;Bjarne Stroustrup
+127;Pengembangan Game Unity;Prog;2023;false;Prof. Budi Santoso
+203;Struktur Kode Bersih;Prog;2022;false;Robert C. Martin
+204;Pola Desain Perangkat Lunak;Prog;2021;false;Erich Gamma,Richard Helm
+102;Struktur Data Fundamental;DataAI;2022;false;Prof. Budi Santoso
+103;AI Pengantar;DataAI;2023;false;Dr. Rini Susanti,Prof. Budi Santoso
+106;Basis Data SQL Lanjutan;DataAI;2020;false;Dr. Dewi Lestari,Prof. Umar Bakri
+112;Machine Learning Praktis;DataAI;2024;false;Dr. Rini Susanti
+113;Big Data Analitik;DataAI;2023;false;Prof. Eko Prasetyo
+128;Statistika Terapan Modern;DataAI;2022;false;Dr. Rini Susanti
+205;Data Mining Konsep;DataAI;2023;false;Jiawei Han,Micheline Kamber
+206;Deep Learning Pengantar;DataAI;2024;false;Ian Goodfellow,Yoshua Bengio
+107;Keamanan Siber Esensial;SainsTek;2022;false;Dr. Chandra Setiawan
+116;Matematika Diskrit Lanjut;SainsTek;2021;false;Dr. Ken Rosen
+123;Jaringan Komputer Dasar;SainsTek;2023;false;Andrew S. Tanenbaum
+124;Sistem Operasi Modern;SainsTek;2022;false;Abraham Silberschatz,Dr. Dewi Lestari
+129;Arsitektur Komputer Digital;SainsTek;2021;false;David A. Patterson,John L. Hennessy
+130;Cloud Computing AWS & Azure;SainsTek;2024;false;Dr. Dewi Lestari
+133;Biologi Sel dan Molekuler;SainsTek;2022;false;Bruce Alberts
+207;Fisika Dasar Universitas;SainsTek;2020;false;Halliday,Resnick,Walker
+208;Teknik Digital Terpadu;SainsTek;2023;false;Dr. Rini Susanti
+108;Sastra Klasik Nusantara;SastraBahasa;2019;false;Dr. Agus Wijaya,Dr. Ida Ayu
+109;Puisi Modern Indonesia;SastraBahasa;2024;false;Dr. Agus Wijaya
+114;Fiksi Ilmiah Populer;SastraBahasa;2020;false;Isaac Asimov
+120;Filsafat Hidup Stoik;SastraBahasa;2019;false;Henry Manampiring,Massimo Pigliucci
+121;Novel Remaja Inspiratif;SastraBahasa;2022;false;Tere Liye
+126;Kumpulan Cerpen Pilihan Terbaik;SastraBahasa;2021;false;Dr. Ida Ayu,Dr. Agus Wijaya
+131;Belajar Bahasa Jepang Komprehensif;SastraBahasa;2020;false;Dr. Agus Wijaya
+209;Antologi Esai Budaya;SastraBahasa;2023;false;Goenawan Mohamad,Dr. Ida Ayu
+115;Sejarah Dunia Lengkap;SosBis;2018;false;Prof. Umar Bakri,Yuval Noah Harari
+117;Bisnis Startup Inovatif;SosBis;2022;false;Prof. Eko Prasetyo
+118;Desain Grafis UI/UX;SosBis;2023;false;Dr. Ida Ayu,Steve Krug
+122;Ekonomi Makro Global;SosBis;2021;false;N. Gregory Mankiw
+125;Manajemen Proyek IT Efektif;SosBis;2024;false;Prof. Eko Prasetyo,Kathy Schwalbe
+132;Psikologi Umum Modern;SosBis;2019;false;Laura A. King
+134;Akuntansi Keuangan Lanjutan;SosBis;2023;false;Donald E. Kieso,Prof. Eko Prasetyo
+135;Investasi Saham Cerdas;SosBis;2024;false;Prof. Eko Prasetyo,Warren Buffett
+210;Pengantar Sosiologi Masyarakat;SosBis;2022;false;George Ritzer,Prof. Umar Bakri
+1123456789;Rekayasa Computer Vision;CompVis;2020;false;Dr. Hery

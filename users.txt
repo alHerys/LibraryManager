@@ -1,2 +1,16 @@
-Dosen;Kiel;12345;Ezekiel Aaron Marmora;Laki-laki;Sukun;123523162314;Ilmu Komputer
-Mahasiswa;Hery;09072511;Alvianto Hery Sarborn;Laki-laki;Sigura-Gura;245150700111022;Ilmu Komputer;Teknologi Informasi
+Dosen;prof.budi;budi123;Prof. Budi Santoso;Laki-laki;Jl. Merdeka 10, Jakarta;198011102005011001;Ilmu Komputer
+Dosen;dr.dewi;dewiSecure;Dr. Dewi Lestari;Perempuan;Jl. Cendrawasih 5A, Bandung;198503152010122003;Sistem Informasi
+Mahasiswa;andi.mhs;andiPass;Andi Pratama;Laki-laki;Jl. Pelajar No. 1, Yogyakarta;12345678;Teknik;Informatika
+Mahasiswa;sita.ayu;sitaAja;Sita Ayu Wardani;Perempuan;Jl. Mahasiswa Blok C2, Surabaya;87654321;Ekonomi;Akuntansi
+Dosen;dr.agus;agusKeren;Dr. Agus Wijaya;Laki-laki;Jl. Pendidikan 77, Medan;197508202000031005;Bahasa
+Mahasiswa;rizal.kurnia;rizalPassword;Rizal Kurniawan;Laki-laki;Jl. Kampus Raya 9, Semarang;11223344;Ilmu Komputer;Ilmu Komputer
+Dosen;dr.rini;riniCerdas;Dr. Rini Susanti;Perempuan;Jl. Inovasi No. 8, Malang;198805202012122004;Teknik Elektro
+Mahasiswa;dian.saputra;dianGanteng;Dian Saputra;Laki-laki;Jl. Teknologi No. 12, Bandung;13579246;Sistem Informasi;Rekayasa Perangkat Lunak
+Mahasiswa;fitri.h;fitriCantik;Fitri Handayani;Perempuan;Jl. Cerdas No. 3, Jakarta;24680135;Ilmu Komputer;Jaringan Komputer
+Dosen;prof.eko;ekoPintar;Prof. Eko Prasetyo;Laki-laki;Jl. Pengetahuan No. 15, Surabaya;197001011995031002;Manajemen
+Mahasiswa;bambang.s;bambangKuat;Bambang Suryadi;Laki-laki;Jl. Olahraga No. 5, Medan;98765432;Fakultas Ilmu Keolahragaan;Pendidikan Jasmani
+Dosen;dr.ida;idaBaik;Dr. Ida Ayu;Perempuan;Jl. Budaya No. 22, Denpasar;198209092008012001;Sastra
+Mahasiswa;chandra.w;chandraOke;Chandra Wijaya;Laki-laki;Jl. Merpati 7, Pontianak;10102020;Hukum;Ilmu Hukum
+Dosen;prof.umar;umarHebat;Prof. Umar Bakri;Laki-laki;Jl. Sejarah 1, Padang;196512301990111007;Sejarah
+Mahasiswa;nina.karlina;ninaManis;Nina Karlina;Perempuan;Jl. Elang 4, Palembang;30304040;Kedokteran;Pendidikan Dokter
+Dosen;Hery;09072511;Alvianto Hery Sarborn;Laki-laki;Sigura-gura;245150700111022;Ilmu Komputer
